@@ -13,12 +13,23 @@
   </head>
 
   <body class="text-center">
-    <form class="form-details">
+    <form action="/" class="form-details" method="POST">
       <h1 class="h3 mb-3 font-weight-normal">Please fill in your details</h1>
-        <input type="text" class="form-control" placeholder="Name" required autofocus>
-        <input type="text" class="form-control" placeholder="Contact Number" required>
-        <input type="text" class="form-control" placeholder="Address" required>
-        <button class="btn btn-lg btn-primary btn-block">Next</button>
+        <div class="page first-page active">
+            <input type="text" name="Name" class="form-control" placeholder="Name" required autofocus>
+            <input type="text" name="Contact" class="form-control" placeholder="Contact Number" required>
+            <input type="text" name="Address" class="form-control" placeholder="Address" required>
+            <button class="btn btn-lg btn-primary btn-block next-btn" type="button">Next</button>
+        </div>
+
+        <div class="page second-page">
+            <input type="text" name="Position" class="form-control" placeholder="Position Applied For" required autofocus>
+            <input type="text" name="Education" class="form-control" placeholder="Education Details" required>
+            <input type="text" name="Employment" class="form-control" placeholder="Employment Details" required>
+            <button class="btn btn-lg btn-primary btn-block prev-btn" type="button">Previous</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        </div>
     </form>
+    <script src="/main.js"></script>
   </body>
 </html>
