@@ -41,3 +41,15 @@ body {
 .page.active {
   display: block;
 }
+
+.second-page p {
+  text-align: left;
+}
+
+.employment {
+  margin: 15px auto;
+}
+
+hr {
+  background-color: black;
+}

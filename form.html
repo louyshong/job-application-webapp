@@ -24,8 +24,22 @@
 
         <div class="page second-page">
             <input type="text" name="Position" class="form-control" placeholder="Position Applied For" required autofocus>
-            <input type="text" name="Education" class="form-control" placeholder="Education Details" required>
-            <input type="text" name="Employment" class="form-control" placeholder="Employment Details" required>
+            <div class="education">
+                <p>Education Details</p>
+                <div class="entry">
+                    <input type="text" name="School" class="form-control" placeholder="School" required>
+                    <input type="text" name="Programme" class="form-control" placeholder="Programme" required>
+                    <input type="text" name="Grade" class="form-control" placeholder="Grade" required>
+                </div>
+                <button class="btn btn-sm btn-success add-btn" type="button">Add</button>
+                <button class="btn btn-sm btn-danger remove-btn" type="button">Remove</button>
+            </div>
+            <div class="employment">
+                <p>Employment History</p>
+                <input type="text" name="Employment" class="form-control" placeholder="Employment Details" required>
+                <button class="btn btn-sm btn-success add-btn" type="button">Add</button>
+                <button class="btn btn-sm btn-danger remove-btn" type="button">Remove</button>
+            </div>
             <button class="btn btn-lg btn-primary btn-block prev-btn" type="button">Previous</button>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
         </div>
