@@ -33,6 +33,9 @@ eduAddButton.addEventListener("click", function() {
     
     // Insert new set of entries
     document.querySelector(".education").insertBefore(newField, document.querySelector(".education .add-btn"));
+
+    // Show remove button
+    document.querySelector(".education .remove-btn").classList.add("active");
 })
 
 empAddButton.addEventListener("click", function() {
@@ -51,6 +54,9 @@ empAddButton.addEventListener("click", function() {
     
     // Insert new set of entries
     document.querySelector(".employment").insertBefore(newField, document.querySelector(".employment .add-btn"));
+
+    // Show remove button
+    document.querySelector(".employment .remove-btn").classList.add("active");
 })
 
 // Remove form fields on second page 
@@ -63,10 +69,13 @@ eduRemoveButton.addEventListener("click", function() {
         allLines[allLines.length - 1].remove();
     }
 
-    // Remove the last div 
+    // Remove the last div and button if only 1 div left
     if (allDivs.length > 1) {
         allDivs[allDivs.length - 1].remove();
-    }
+        if (allDivs.length === 2) {
+            document.querySelector(".education .remove-btn").classList.remove("active");
+        }
+    } 
 })
 
 empRemoveButton.addEventListener("click", function() {
@@ -78,8 +87,11 @@ empRemoveButton.addEventListener("click", function() {
         allLines[allLines.length - 1].remove();
     }
 
-    // Remove the last div 
+    // Remove the last div and button if only 1 div left
     if (allDivs.length > 1) {
-        allDivs[allDivs.length - 1].remove();
-    }
+        allDivs[allDivs.length - 1].remove();    
+        if (allDivs.length === 2) {
+            document.querySelector(".employment .remove-btn").classList.remove("active");
+        }
+    } 
 })

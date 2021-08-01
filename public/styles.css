@@ -37,8 +37,13 @@ body {
   display: block;
 }
 
-.second-page p {
+.second-page h6 {
   text-align: left;
+  margin-top: 30px;
+}
+
+.prev-btn {
+  margin-top: 30px;
 }
 
 .employment {
@@ -51,4 +56,12 @@ hr {
 
 input[type="date"] {
   margin-top: 0px !important;
+}
+
+.remove-btn {
+  display: none;
+}
+
+.remove-btn.active {
+  display: inline-block;
 }
