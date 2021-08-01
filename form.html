@@ -36,7 +36,15 @@
             </div>
             <div class="employment">
                 <p>Employment History</p>
-                <input type="text" name="Employment" class="form-control" placeholder="Employment Details" required>
+                    <div class="entry">
+                        <input type="text" name="Title" class="form-control" placeholder="Job Title" required>
+                        <input type="text" name="Company" class="form-control" placeholder="Company" required>
+                        <input type="text" name="Location" class="form-control" placeholder="Location" required>
+                        <label>Start Date:</label>
+                        <input type="date" name="StartDate" class="form-control" required>
+                        <label>End Date:</label>
+                        <input type="date" name="EndDate" class="form-control" required>
+                    </div>
                 <button class="btn btn-sm btn-success add-btn" type="button">Add</button>
                 <button class="btn btn-sm btn-danger remove-btn" type="button">Remove</button>
             </div>

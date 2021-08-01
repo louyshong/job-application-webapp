@@ -48,3 +48,7 @@ body {
 hr {
   background-color: black;
 }
+
+input[type="date"] {
+  margin-top: 0px !important;
+}
