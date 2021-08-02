@@ -1,68 +1,69 @@
-const nextButton = document.querySelector(".next-btn");
-const prevButton = document.querySelector(".prev-btn");
+const nextButton = $(".next-btn");
+const prevButton = $(".prev-btn");
 
-nextButton.addEventListener("click", function() {
-    document.querySelector("form .first-page").classList.remove("active");
-    document.querySelector("form .second-page").classList.add("active");
+nextButton.click(function() {
+    // Second page form fields are not relevant now
+    // $("form .second-page input").removeAttr("required");
+
+    // If first page form fields are all valid, allow user to move on to next page
+    if ($("form")[0].reportValidity()) {
+        $("form .first-page").removeClass("active");
+        $("form .second-page").addClass("active");
+    } 
+
+    // Restore required attribute (note that is a boolean attribute, so "" is used)
+    // $("form .second-page input").attr("required", "");
 })
 
-prevButton.addEventListener("click", function() {
-    document.querySelector("form .second-page").classList.remove("active");
-    document.querySelector("form .first-page").classList.add("active");
+prevButton.click(function() {
+    $("form .second-page").removeClass("active");
+    $("form .first-page").addClass("active");
 })
 
-const eduAddButton = document.querySelector(".education .add-btn");
-const eduRemoveButton = document.querySelector(".education .remove-btn");
-const empAddButton = document.querySelector(".employment .add-btn");
-const empRemoveButton = document.querySelector(".employment .remove-btn");
+const eduAddButton = $(".education .add-btn");
+const eduRemoveButton = $(".education .remove-btn");
+const empAddButton = $(".employment .add-btn");
+const empRemoveButton = $(".employment .remove-btn");
 
 // Add form fields on second page 
-eduAddButton.addEventListener("click", function() {
+eduAddButton.click(function() {
     // Clone set of entries
-    const newField = document.querySelector(".education .entry").cloneNode(true);
+    let newField = $(".education .entry").first().clone();
 
     // Reset inputs 
-    const inputs = newField.getElementsByTagName("input");
-    for (let i = 0; i < inputs.length; i++) {
-        inputs[i].value = null;
-    }
+    newField.find("input").val(null);
 
     // Insert horizontal line 
-    const line = document.createElement("hr")
-    document.querySelector(".education").insertBefore(line, document.querySelector(".education .add-btn"));
+    $(".education .add-btn").before("<hr>");
     
     // Insert new set of entries
-    document.querySelector(".education").insertBefore(newField, document.querySelector(".education .add-btn"));
+    $(".education .add-btn").before(newField);
 
     // Show remove button
-    document.querySelector(".education .remove-btn").classList.add("active");
+    $(".education .remove-btn").addClass("active");
 })
 
-empAddButton.addEventListener("click", function() {
+empAddButton.click(function() {
     // Clone set of entries
-    const newField = document.querySelector(".employment .entry").cloneNode(true);
+    let newField = $(".employment .entry").first().clone();
 
     // Reset inputs 
-    const inputs = newField.getElementsByTagName("input");
-    for (let i = 0; i < inputs.length; i++) {
-        inputs[i].value = null;
-    }
+    newField.find("input").val(null);
 
     // Insert horizontal line 
-    const line = document.createElement("hr")
-    document.querySelector(".employment").insertBefore(line, document.querySelector(".employment .add-btn"));
+    $(".employment .add-btn").before("<hr>");
     
     // Insert new set of entries
-    document.querySelector(".employment").insertBefore(newField, document.querySelector(".employment .add-btn"));
+    $(".employment .add-btn").before(newField);
 
     // Show remove button
-    document.querySelector(".employment .remove-btn").classList.add("active");
+    $(".employment .remove-btn").addClass("active");
 })
 
 // Remove form fields on second page 
-eduRemoveButton.addEventListener("click", function() {
-    const allDivs = document.querySelectorAll(".education .entry");
-    const allLines = document.querySelectorAll(".education hr");
+eduRemoveButton.click(function() {
+    let allDivs = $(".education .entry");
+    let allLines = $(".education hr");
 
     // Remove horizontal line
     if (allLines.length > 0) {
@@ -73,14 +74,14 @@ eduRemoveButton.addEventListener("click", function() {
     if (allDivs.length > 1) {
         allDivs[allDivs.length - 1].remove();
         if (allDivs.length === 2) {
-            document.querySelector(".education .remove-btn").classList.remove("active");
+            $(".education .remove-btn").removeClass("active");
         }
     } 
 })
 
-empRemoveButton.addEventListener("click", function() {
-    const allDivs = document.querySelectorAll(".employment .entry");
-    const allLines = document.querySelectorAll(".employment hr");
+empRemoveButton.click(function() {
+    let allDivs = $(".employment .entry");
+    let allLines = $(".employment hr");
 
     // Remove horizontal line
     if (allLines.length > 0) {
@@ -91,7 +92,7 @@ empRemoveButton.addEventListener("click", function() {
     if (allDivs.length > 1) {
         allDivs[allDivs.length - 1].remove();    
         if (allDivs.length === 2) {
-            document.querySelector(".employment .remove-btn").classList.remove("active");
+            $(".employment .remove-btn").removeClass("active");
         }
     } 
 })
