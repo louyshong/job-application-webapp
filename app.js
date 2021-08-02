@@ -1,12 +1,12 @@
 const express = require("express");
 const request = require("request");
 const multer  = require('multer'); 
-const upload = multer();
 const nodemailer = require("nodemailer");
 const {google} = require("googleapis");
 require('dotenv').config();
 
 const app = express();
+const upload = multer();
 const OAuth2 = google.auth.OAuth2;
 
 // Configure recipient email and service
@@ -65,10 +65,12 @@ app.post("/", upload.single('CV'), function(req, res) {
     let endDates = req.body.EndDate; 
 
     // Build message text
-    let text = "Applicant name: " + name + "\n" +
-               "Contact: " + contact + "\n" +
-               "Address: " + address + "\n" + 
-               "Position applied for: " + position + "\n" + "\n";
+    let text = "***** Applicant Details *****" + "\n";
+    
+    text = text + "Applicant name: " + name + "\n" +
+           "Contact: " + contact + "\n" +
+           "Address: " + address + "\n" + 
+           "Position applied for: " + position + "\n" + "\n";
 
     // Ensure that these are always arrays (to loop through in for loop)
     if (!Array.isArray(schools)) {
@@ -85,6 +87,8 @@ app.post("/", upload.single('CV'), function(req, res) {
         startDates = [startDates];
         endDates = [endDates];
     }
+    
+    text = text + "***** Education *****" + "\n";
 
     for (let i = 0; i < schools.length; i++) {
         // These are all same length as they are required fields 
@@ -92,8 +96,10 @@ app.post("/", upload.single('CV'), function(req, res) {
                        "Programme: " + programmes[i] + "\n" + 
                        "Grade: " + grades[i] + "\n"; 
 
-        text = text + newEntry + "\n"; 
+        text = text + newEntry + "\n\n"; 
     }
+
+    text = text + "***** Employment History *****" + "\n";
 
     for (let i = 0; i < titles.length; i++) {
         // These are all same length as they are required fields
@@ -106,23 +112,27 @@ app.post("/", upload.single('CV'), function(req, res) {
         text = text + newEntry + "\n";
     }
 
-    console.log(text);
+    // console.log(text);
+    // console.log(req);
+    // console.log(req.file);
 
     // Construct message
     let message = {
         from: serverEmail,
         to: recipientEmail,
         subject: "New application!",
-        attachments: [{filename: name + "_CV" + Date.now(), content: req.file}],
+        attachments: [{filename: name + "_CV_" + Date.now() + ".pdf", content: req.file.buffer}],
         text: text
     };
 
     // Send mail 
     transporter.sendMail(message, function(error, info) {
         if (error) {
-            console.log(error);
+            console.log("Error: ", error);
+            res.sendFile(__dirname + "/failure.html");
         } else {
             console.log("Email sent: " + info.response);
+            res.sendFile(__dirname + "/success.html");
         }
     })
 });
