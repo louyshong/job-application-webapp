@@ -1,61 +1,64 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Job application</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="/styles.css" >
-  </head>
+  <title>Job application</title>
 
-  <body class="text-center">
-    <form action="/" class="form-details" method="POST" enctype="multipart/form-data">
-      <h1 class="h3 mb-3 font-weight-normal">Please fill in your details</h1>
-        <div class="page first-page active">
-          <input type="text" name="Name" class="form-control" placeholder="Name" required autofocus>
-          <input type="text" name="Contact" class="form-control" placeholder="Contact Number" required>
-          <input type="text" name="Address" class="form-control" placeholder="Address" required>
-          <button class="btn btn-lg btn-primary btn-block next-btn" type="button">Next</button>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body class="text-center">
+  <form action="/" class="form-details" method="POST" enctype="multipart/form-data">
+    <h1 class="h3 mb-3 font-weight-normal">Please fill in your details</h1>
+    <div class="page first-page active">
+      <input type="text" name="Name" class="form-control" placeholder="Name" required autofocus>
+      <input type="text" name="Contact" class="form-control" placeholder="Contact Number" required>
+      <input type="text" name="Address" class="form-control" placeholder="Address" required>
+      <button class="btn btn-lg btn-primary btn-block next-btn" type="button">Next</button>
+    </div>
+
+    <div class="page second-page">
+      <input type="text" name="Position" class="form-control" placeholder="Position Applied For" required autofocus>
+      <div class="education">
+        <h6>Education Details</h6>
+        <div class="entry">
+          <input type="text" name="School" class="form-control" placeholder="School" required>
+          <input type="text" name="Programme" class="form-control" placeholder="Programme" required>
+          <input type="text" name="Grade" class="form-control" placeholder="Grade" required>
         </div>
-
-        <div class="page second-page">
-            <input type="text" name="Position" class="form-control" placeholder="Position Applied For" required autofocus>
-            <div class="education">
-              <h6>Education Details</h6>
-              <div class="entry">
-                <input type="text" name="School" class="form-control" placeholder="School" required>
-                <input type="text" name="Programme" class="form-control" placeholder="Programme" required>
-                <input type="text" name="Grade" class="form-control" placeholder="Grade" required>
-              </div>
-              <button class="btn btn-sm btn-success add-btn" type="button">Add</button>
-              <button class="btn btn-sm btn-danger remove-btn" type="button">Remove</button>
-            </div>
-            <div class="employment">
-              <h6>Employment History</h6>
-              <div class="entry">
-                <input type="text" name="Title" class="form-control" placeholder="Job Title" required>
-                <input type="text" name="Company" class="form-control" placeholder="Company" required>
-                <input type="text" name="Location" class="form-control" placeholder="Location" required>
-                <label>Start Date:</label>
-                <input type="date" name="StartDate" class="form-control" required>
-                <label>End Date:</label>
-                <input type="date" name="EndDate" class="form-control" required>
-              </div>
-              <button class="btn btn-sm btn-success add-btn" type="button">Add</button>
-              <button class="btn btn-sm btn-danger remove-btn" type="button">Remove</button>
-            </div>
-            <div class="cv">
-              <h6>Upload CV</h6>
-              <input type="file" name="CV" class="form-control" required>
-            </div>
-            <button class="btn btn-lg btn-primary btn-block prev-btn" type="button">Previous</button>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <button class="btn btn-sm btn-success add-btn" type="button">Add</button>
+        <button class="btn btn-sm btn-danger remove-btn" type="button">Remove</button>
+      </div>
+      <div class="employment">
+        <h6>Employment History</h6>
+        <div class="entry">
+          <input type="text" name="Title" class="form-control" placeholder="Job Title" required>
+          <input type="text" name="Company" class="form-control" placeholder="Company" required>
+          <input type="text" name="Location" class="form-control" placeholder="Location" required>
+          <label>Start Date:</label>
+          <input type="date" name="StartDate" class="form-control" required>
+          <label>End Date:</label>
+          <input type="date" name="EndDate" class="form-control" required>
         </div>
-    </form>
-    <script src="/main.js"></script>
-  </body>
+        <button class="btn btn-sm btn-success add-btn" type="button">Add</button>
+        <button class="btn btn-sm btn-danger remove-btn" type="button">Remove</button>
+      </div>
+      <div class="cv">
+        <h6>Upload CV</h6>
+        <input type="file" name="CV" class="form-control" required>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block prev-btn" type="button">Previous</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+    </div>
+  </form>
+  <script src="/main.js"></script>
+</body>
+
 </html>
