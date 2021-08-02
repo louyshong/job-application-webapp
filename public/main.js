@@ -3,7 +3,7 @@ const prevButton = $(".prev-btn");
 
 nextButton.click(function() {
     // Second page form fields are not relevant now
-    // $("form .second-page input").removeAttr("required");
+    $("form .second-page input").removeAttr("required");
 
     // If first page form fields are all valid, allow user to move on to next page
     if ($("form")[0].reportValidity()) {
@@ -12,7 +12,7 @@ nextButton.click(function() {
     } 
 
     // Restore required attribute (note that is a boolean attribute, so "" is used)
-    // $("form .second-page input").attr("required", "");
+    $("form .second-page input").attr("required", "");
 })
 
 prevButton.click(function() {
