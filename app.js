@@ -129,12 +129,20 @@ app.post("/", upload.single('CV'), function(req, res) {
     transporter.sendMail(message, function(error, info) {
         if (error) {
             console.log("Error: ", error);
-            res.sendFile(__dirname + "/failure.html");
+            res.redirect("/failure");
         } else {
             console.log("Email sent: " + info.response);
-            res.sendFile(__dirname + "/success.html");
+            res.redirect("/success");
         }
     })
+});
+
+app.get("/success", function(req, res) {
+    res.sendFile(__dirname + "/success.html");
+});
+
+app.get("/failure", function(req, res) {
+    res.sendFile(__dirname + "/failure.html");
 });
 
 app.listen(3000, function() {
