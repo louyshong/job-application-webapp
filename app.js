@@ -1,5 +1,4 @@
 const express = require("express");
-const request = require("request");
 const multer  = require('multer'); 
 const nodemailer = require("nodemailer");
 const {google} = require("googleapis");
