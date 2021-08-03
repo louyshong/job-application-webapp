@@ -96,7 +96,7 @@ app.post("/", upload.single('CV'), function(req, res) {
                        "Programme: " + programmes[i] + "\n" + 
                        "Grade: " + grades[i] + "\n"; 
 
-        text = text + newEntry + "\n\n"; 
+        text = text + newEntry + "\n"; 
     }
 
     text = text + "***** Employment History *****" + "\n";
@@ -120,8 +120,8 @@ app.post("/", upload.single('CV'), function(req, res) {
     let message = {
         from: serverEmail,
         to: recipientEmail,
-        subject: "New application!",
-        attachments: [{filename: name + "_CV_" + Date.now() + ".pdf", content: req.file.buffer}],
+        subject: "New application from " + name + "!",
+        attachments: [{filename: name + "_CV.pdf", content: req.file.buffer}],
         text: text
     };
 
