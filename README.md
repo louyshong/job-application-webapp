@@ -1,4 +1,4 @@
-# job-application-webapp
+# Job application webapp
 
 A simple Node.js job application webapp. 
 
@@ -28,6 +28,16 @@ node app.js
 ```
 localhost:3000
 ```
+
+### File structure
+| Folder or file | Description |
+| -------------- | ----------- |
+|`public` folder | Contains CSS and JavaScript loaded by `form.html` | 
+|`views` folder  | Contains a template file for submission failure   | 
+|`app.js`        | App entry point                                   |
+|`form.html`     | Main page                                         |
+|`success.html`  | Page for successful submission                    |
+|`package.json`  | Contains required packages                        |
 
 ### Acknowledgements
 This webapp was built using standard [Bootstrap](https://getbootstrap.com/) components. 
