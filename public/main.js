@@ -96,3 +96,8 @@ empRemoveButton.click(function() {
         }
     } 
 })
+
+const contactField = $("input[name='Contact']");
+
+contactField.attr("oninvalid", "setCustomValidity('Please enter a phone number.')");
+contactField.attr("oninput", "setCustomValidity('')");
