@@ -28,10 +28,10 @@ const empRemoveButton = $(".employment .remove-btn");
 // Add form fields on second page 
 eduAddButton.click(function() {
     // Clone set of entries
-    let newField = $(".education .entry").first().clone();
+    const newField = $(".education .entry").first().clone();
 
     // Reset inputs 
-    newField.find("input").val(null);
+    newField.find("input").val("");
 
     // Insert horizontal line 
     $(".education .add-btn").before("<hr>");
@@ -45,10 +45,10 @@ eduAddButton.click(function() {
 
 empAddButton.click(function() {
     // Clone set of entries
-    let newField = $(".employment .entry").first().clone();
+    const newField = $(".employment .entry").first().clone();
 
     // Reset inputs 
-    newField.find("input").val(null);
+    newField.find("input").val("");
 
     // Insert horizontal line 
     $(".employment .add-btn").before("<hr>");
@@ -62,8 +62,8 @@ empAddButton.click(function() {
 
 // Remove form fields on second page 
 eduRemoveButton.click(function() {
-    let allDivs = $(".education .entry");
-    let allLines = $(".education hr");
+    const allDivs = $(".education .entry");
+    const allLines = $(".education hr");
 
     // Remove horizontal line
     if (allLines.length > 0) {
@@ -80,8 +80,8 @@ eduRemoveButton.click(function() {
 })
 
 empRemoveButton.click(function() {
-    let allDivs = $(".employment .entry");
-    let allLines = $(".employment hr");
+    const allDivs = $(".employment .entry");
+    const allLines = $(".employment hr");
 
     // Remove horizontal line
     if (allLines.length > 0) {

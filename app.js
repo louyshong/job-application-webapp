@@ -61,10 +61,10 @@ app.post("/", function(req, res) {
                 res.redirect("/failure?type=2");
             }
         } else {
-            let name = req.body.Name; 
-            let contact = req.body.Contact;
-            let address = req.body.Address;
-            let position = req.body.Position;
+            const name = req.body.Name; 
+            const contact = req.body.Contact;
+            const address = req.body.Address;
+            const position = req.body.Position;
             let schools = req.body.School; 
             let programmes = req.body.Programme; 
             let grades = req.body.Grade;
@@ -102,9 +102,9 @@ app.post("/", function(req, res) {
 
             for (let i = 0; i < schools.length; i++) {
                 // These are all same length as they are required fields 
-                let newEntry = "School: " + schools[i] + "\n" + 
-                               "Programme: " + programmes[i] + "\n" + 
-                               "Grade: " + grades[i] + "\n"; 
+                const newEntry = "School: " + schools[i] + "\n" + 
+                                 "Programme: " + programmes[i] + "\n" + 
+                                 "Grade: " + grades[i] + "\n"; 
 
                 text = text + newEntry + "\n"; 
             }
@@ -113,17 +113,17 @@ app.post("/", function(req, res) {
 
             for (let i = 0; i < titles.length; i++) {
                 // These are all same length as they are required fields
-                let newEntry = "Title: " + titles[i] + "\n" + 
-                               "Company: " + companies[i] + "\n" + 
-                               "Location: " + locations[i] + "\n" + 
-                               "Start date: " + startDates[i] + "\n" + 
-                               "End date: " + endDates[i] + "\n";
+                const newEntry = "Title: " + titles[i] + "\n" + 
+                                 "Company: " + companies[i] + "\n" + 
+                                 "Location: " + locations[i] + "\n" + 
+                                 "Start date: " + startDates[i] + "\n" + 
+                                 "End date: " + endDates[i] + "\n";
                 
                 text = text + newEntry + "\n";
             }
 
             // Construct message
-            let message = {
+            const message = {
                 from: serverEmail,
                 to: recipientEmail,
                 subject: "New application from " + name + "!",
