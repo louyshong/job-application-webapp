@@ -43,8 +43,6 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-let failureMessage; // For submission failure template
-
 app.set("view engine", "ejs");
 
 app.use(express.static("public"));
@@ -58,11 +56,10 @@ app.post("/", function(req, res) {
         if (multerErr) {
             console.log("Error: ", multerErr);
             if (multerErr.code === "LIMIT_FILE_SIZE") {
-                failureMessage = "Please make sure your CV is less than 1MB.";
+                res.redirect("/failure?type=1");
             } else {
-                failureMessage = "Please try again.";
+                res.redirect("/failure?type=2");
             }
-            res.redirect("/failure");
         } else {
             let name = req.body.Name; 
             let contact = req.body.Contact;
@@ -81,9 +78,9 @@ app.post("/", function(req, res) {
             let text = "***** Applicant Details *****" + "\n";
             
             text = text + "Applicant name: " + name + "\n" +
-                "Contact: " + contact + "\n" +
-                "Address: " + address + "\n" + 
-                "Position applied for: " + position + "\n" + "\n";
+                   "Contact: " + contact + "\n" +
+                   "Address: " + address + "\n" + 
+                   "Position applied for: " + position + "\n" + "\n";
 
             // Ensure that these are always arrays (to loop through in for loop)
             if (!Array.isArray(schools)) {
@@ -106,8 +103,8 @@ app.post("/", function(req, res) {
             for (let i = 0; i < schools.length; i++) {
                 // These are all same length as they are required fields 
                 let newEntry = "School: " + schools[i] + "\n" + 
-                            "Programme: " + programmes[i] + "\n" + 
-                            "Grade: " + grades[i] + "\n"; 
+                               "Programme: " + programmes[i] + "\n" + 
+                               "Grade: " + grades[i] + "\n"; 
 
                 text = text + newEntry + "\n"; 
             }
@@ -117,17 +114,13 @@ app.post("/", function(req, res) {
             for (let i = 0; i < titles.length; i++) {
                 // These are all same length as they are required fields
                 let newEntry = "Title: " + titles[i] + "\n" + 
-                            "Company: " + companies[i] + "\n" + 
-                            "Location: " + locations[i] + "\n" + 
-                            "Start date: " + startDates[i] + "\n" + 
-                            "End date: " + endDates[i] + "\n";
+                               "Company: " + companies[i] + "\n" + 
+                               "Location: " + locations[i] + "\n" + 
+                               "Start date: " + startDates[i] + "\n" + 
+                               "End date: " + endDates[i] + "\n";
                 
                 text = text + newEntry + "\n";
             }
-
-            // console.log(text);
-            // console.log(req);
-            // console.log(req.file);
 
             // Construct message
             let message = {
@@ -142,8 +135,7 @@ app.post("/", function(req, res) {
             transporter.sendMail(message, function(mailerError, info) {
                 if (mailerError) {
                     console.log("Error: ", mailerError);
-                    failureMessage = "It was an internal error. Please try again later.";
-                    res.redirect("/failure");
+                    res.redirect("/failure?type=3");
                 } else {
                     console.log("Email sent: " + info.response);
                     res.redirect("/success");
@@ -158,7 +150,19 @@ app.get("/success", function(req, res) {
 });
 
 app.get("/failure", function(req, res) {
-    res.render("failure", {failureMessage: failureMessage});
+    switch(req.query.type) {
+        case "1":
+            res.render("failure", {failureMessage: "Please make sure your CV is less than 1MB."});
+            break;
+        case "2":
+            res.render("failure", {failureMessage: "Please try again."});
+            break;
+        case "3":
+            res.render("failure", {failureMessage: "It was an internal error. Please try again later."});
+            break;
+        default: 
+            res.render("failure", {failureMessage: ""});
+    }
 });
 
 app.listen(3000, function() {
