@@ -43,6 +43,10 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+let failureMessage; // For submission failure template
+
+app.set("view engine", "ejs");
+
 app.use(express.static("public"));
 
 app.get("/", function(req, res) {
@@ -50,9 +54,14 @@ app.get("/", function(req, res) {
 });
 
 app.post("/", function(req, res) {
-    upload(req, res, function(err) {
-        if (err) {
-            console.log("Error: ", err);
+    upload(req, res, function(multerErr) {
+        if (multerErr) {
+            console.log("Error: ", multerErr);
+            if (multerErr.code === "LIMIT_FILE_SIZE") {
+                failureMessage = "Please make sure your CV is less than 1MB.";
+            } else {
+                failureMessage = "Please try again.";
+            }
             res.redirect("/failure");
         } else {
             let name = req.body.Name; 
@@ -130,9 +139,10 @@ app.post("/", function(req, res) {
             };
 
             // Send mail 
-            transporter.sendMail(message, function(error, info) {
-                if (error) {
-                    console.log("Error: ", error);
+            transporter.sendMail(message, function(mailerError, info) {
+                if (mailerError) {
+                    console.log("Error: ", mailerError);
+                    failureMessage = "It was an internal error. Please try again later.";
                     res.redirect("/failure");
                 } else {
                     console.log("Email sent: " + info.response);
@@ -148,7 +158,7 @@ app.get("/success", function(req, res) {
 });
 
 app.get("/failure", function(req, res) {
-    res.sendFile(__dirname + "/failure.html");
+    res.render("failure", {failureMessage: failureMessage});
 });
 
 app.listen(3000, function() {
