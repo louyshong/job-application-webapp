@@ -29,7 +29,7 @@ node app.js
 localhost:3000
 ```
 
-### File structure
+### Project structure
 | Folder or file | Description |
 | -------------- | ----------- |
 |`public` folder | Contains CSS and JavaScript loaded by `form.html` | 
